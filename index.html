@@ -3,53 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой сайт на GitHub</title>
+    <title>Virgil | IT Portfolio</title>
+    <!-- Подключаем Bootstrap 5 через CDN -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <!-- Подключаем Bootstrap Icons для иконок -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    
     <style>
+        /* Кастомные CSS-анимации для плавного появления */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+            background-color: #020617; /* Глубокий темный фон */
+            color: #f8fafc;
+            overflow-x: hidden;
         }
-        .container {
-            text-align: center;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+        .animate-fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
         }
-        h1 {
-            color: #2b6cb0;
+
+        .animate-slide-right {
+            opacity: 0;
+            animation: slideRight 1s ease-out 0.3s forwards;
         }
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
-        .btn {
-            display: inline-block;
-            background-color: #3182ce;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
-        .btn:hover {
-            background-color: #2b6cb0;
+
+        /* Легкое свечение для GIF-картинки при наведении */
+        .gif-avatar {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gif-avatar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(45, 212, 191, 0.3);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Привет, GitHub!</h1>
-        <p>Это моя первая веб-страница, запущенная через GitHub Pages.</p>
-        <a href="https://github.com" class="btn" target="_blank">Перейти на GitHub</a>
-    </div>
+    <!-- Навигационная панель -->
+    <nav class="navbar navbar-expand-lg border-b border-secondary border-opacity-25 sticky-top bg-dark bg-opacity-75 backdrop-blur py-3">
+        <div class="container max-w-5xl">
+            <a class="navbar-brand font-monospace fw-bold text-info" href="#">&lt;Virgil /&gt;</a>
+        </div>
+    </nav>
 
+    <!-- Главный экран с трехколоночной структурой Bootstrap -->
+    <main class="container my-5 py-5">
+        <div class="row align-items-center g-5">
+            
+            <!-- Столбец 1: Крайний левый угол с GIF-картинкой -->
+            <div class="col-12 col-md-4 text-center text-md-start animate-fade-in">
+                <!-- Замени 'avatar.gif' на прямую ссылку на твою гифку (например, из репозитория или imgur) -->
+                <img src="avatar.gif" alt="Virgil GIF" class="img-fluid rounded-4 gif-avatar shadow" style="max-width: 220px; border: 2px solid #2dd4bf;">
+            </div>
+
+            <!-- Столбец 2: Заголовок и описание (Никнейм Virgil) -->
+            <div class="col-12 col-md-5 animate-slide-right">
+                <p class="text-info font-monospace small mb-2 tracking-wider">Привет, меня зовут</p>
+                <h1 class="display-3 fw-extrabold text-white mb-2">Virgil</h1>
+                <h2 class="h3 text-secondary mb-4">Я создаю масштабируемые веб-приложения</h2>
+                <p class="text-secondary leading-relaxed mb-4">
+                    Fullstack-разработчик. Пишу чистый, поддерживаемый код на Python/Flask и современных фронтенд-технологиях. Специализируюсь на создании удобных цифровых решений.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="https://github.com" target="_blank" class="btn btn-outline-info font-monospace btn-sm px-3">
+                        <i class="bi bi-github"></i> GitHub
+                    </a>
+                    <a href="mailto:your.email@example.com" class="btn btn-secondary font-monospace btn-sm px-3 text-white-50">
+                        <i class="bi bi-envelope"></i> Email
+                    </a>
+                </div>
+            </div>
+
+            <!-- Столбец 3: Пустой (используется для баланса сетки Bootstrap) -->
+            <div class="col-12 col-md-3 d-none d-md-block">
+                <!-- Оставлен пустым по вашему запросу для создания красивого отступа справа -->
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="text-center py-4 border-top border-secondary border-opacity-10 font-monospace text-secondary small fixed-bottom bg-dark bg-opacity-25">
+        <p class="mb-0">© 2026 — Разработано на Bootstrap 5 для GitHub Pages</p>
+    </footer>
+
+    <!-- Подключаем скрипты Bootstrap (необходимы для интерактивных компонентов) -->
+    <script src="https://jsdelivr.net"></script>
 </body>
 </html>
