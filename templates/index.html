@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.name }} | Portfolio</title>
+    <!-- Подключаем Tailwind CSS на лету, без npm -->
+    <script src="https://tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 950: '#020617' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased selection:bg-teal-500 selection:text-slate-900">
+
+    <!-- Навигация -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/70 border-b border-slate-800">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <span class="font-mono text-lg font-bold text-teal-400">&lt;{{ user.name }} /&gt;</span>
+            <div class="flex gap-6 text-sm font-medium text-slate-400">
+                <a href="#about" class="hover:text-teal-400 transition-colors">О себе</a>
+                <a href="#projects" class="hover:text-teal-400 transition-colors">Проекты</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6 py-16 space-y-32">
+        
+        <!-- Главный экран (Hero) -->
+        <section id="about" class="space-y-6 pt-8">
+            <div class="space-y-2">
+                <p class="text-teal-400 font-mono text-sm tracking-wider">Привет, меня зовут</p>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-500 bg-clip-text text-transparent">
+                    {{ user.name }}
+                </h1>
+                <h2 class="text-3xl md:text-5xl font-bold text-slate-400">
+                    {{ user.role }}
+                </h2>
+            </div>
+            
+            <p class="text-slate-400 max-w-xl text-lg leading-relaxed">
+                {{ user.bio }}
+            </p>
+
+            <div class="flex items-center gap-4 pt-4">
+                <a href="{{ user.github }}" target="_blank" class="px-4 py-2 border border-slate-700 hover:border-teal-400 hover:text-teal-400 rounded-lg transition-all font-mono text-sm">
+                    GitHub
+                </a>
+                <a href="mailto:{{ user.email }}" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 rounded-lg transition-all font-mono text-sm text-slate-300">
+                    Email
+                </a>
+            </div>
+        </section>
+
+        <!-- Раздел с проектами -->
+        <section id="projects" class="space-y-8 scroll-mt-24">
+            <div class="border-b border-slate-800 pb-2">
+                <h3 class="text-2xl font-bold">Избранные проекты</h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                {% for project in projects %}
+                <div class="group relative p-6 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 hover:bg-slate-900 transition-all flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <h4 class="text-xl font-bold text-slate-200 group-hover:text-teal-400 transition-colors">
+                                {{ project.title }}
+                            </h4>
+                            <a href="{{ project.link }}" target="_blank" class="text-slate-500 hover:text-slate-300">↗</a>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            {{ project.description }}
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-6">
+                        {% for tag in project.tags %}
+                        <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-800 text-teal-400/90">
+                            {{ tag }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-slate-900 bg-slate-950 py-8 text-center text-xs font-mono text-slate-600">
+        <p>© 2026 — Работает на Flask & Tailwind</p>
+    </footer>
+
+</body>
+</html>
